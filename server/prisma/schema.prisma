@@ -10,3 +10,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Patient {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String   @db.VarChar(255)
+  icfirst   String   
+  icsecond  String
+  pw        String
+  slots     Slots?   @relation(fields: [slotsId], references: [id])
+  slotsId   Int?
+}
+
+model VacCenter {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+  postal Int     @unique
+  type   String
+  slots  Slots[]
+}
+
+model Slots {
+  id      Int       @id @default(autoincrement())
+  vac     VacCenter @relation(fields: [vacCenterId], references: [id])
+  booking DateTime
+  patient Patient[]
+
+  vacCenterId Int
+}

@@ -5,19 +5,20 @@ require('dotenv').config();
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 
+
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
-
-
 app.use(cors());
-app.get('/', async (req, res, next) => {
-  res.send({ message: 'Awesome it works 🐻' });
-});
+
+// app.get('/', async (req, res, next) => {
+//   res.send({ message: 'Awesome it works 🐻' });
+// });
 
 app.use("/auth", require("./controller/auth"))
 app.use('/api', require('./routes/api.route'));
+app.use("/api/patient", require("./controller/patient"))
 
 app.use((req, res, next) => {
   next(createError.NotFound());

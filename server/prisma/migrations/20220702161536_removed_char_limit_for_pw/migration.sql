@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Patient" ALTER COLUMN "pw" SET DATA TYPE TEXT;

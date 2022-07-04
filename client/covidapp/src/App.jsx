@@ -2,9 +2,9 @@ import { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import {Route,Routes,BrowserRouter, Outlet} from "react-router-dom"
-import Login from './pages/Login'
+import Login from './pages/tutorial/Login'
 import Secret from './pages/tutorial/Secret'
-import Home from './pages/Home'
+import Home from './pages/tutorial/Home'
 
 
 function App() {
